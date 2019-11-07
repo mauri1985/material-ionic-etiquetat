@@ -1,0 +1,167 @@
+<ion-content overflow-scroll="true">
+    <form #usuarioForm="ngForm" (ngSubmit)="registrarUsuario()" [formGroup]="registerForm">
+        <input type=image src=".\assets\img\registro.png" width="350" height="50">
+        <div class="form-group col-md-6">
+            <label for="inputNombre">Nombre</label>
+            <input [(ngModel)]="usuarioModel.nombre" required name="nombre" formControlName="nombre" type="text"
+                class="form-control" id="inputNombre" placeholder="Ingrese un Nombre">
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                <div *ngIf="nombre.errors.required">
+                    Debe ingresar un nombre
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputApellido">Apellido</label>
+            <input [(ngModel)]="usuarioModel.apellido" name="apellido" formControlName="apellido" type="text"
+                class="form-control" id="inputApellido" placeholder="Ingrese su Apellido">
+            <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)" class="alert alert-danger">
+                <div *ngIf="apellido.errors.required">
+                    Debe ingresar un apellido
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            <input [(ngModel)]="usuarioModel.email" name="email" formControlName="email" type="email"
+                class="form-control" id="inputEmail" placeholder="Ingrese un Email">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Debe ingresar un email
+                </div>
+                <div *ngIf="email.errors.email">
+                    El email debe tener este formato ejemplo@email.com
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword">Password</label>
+            <input [(ngModel)]="usuarioModel.contrasenia" name="contrasenia" formControlName="contrasenia"
+                type="password" class="form-control" id="inputPassword" placeholder="Ingrese su Password">
+            <div *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)" class="alert alert-danger">
+                <div *ngIf="contrasenia.errors.required">
+                    Debe ingresar un password
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputTel">Telefono de Contacto</label>
+            <input [(ngModel)]="usuarioModel.telefono" name="telefono" formControlName="telefono" type="tel"
+                class="form-control" id="inputTel" placeholder="Telefono o Celular">
+            <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)" class="alert alert-danger">
+                <div *ngIf="telefono.errors.required">
+                    Debe ingresar un telefono
+                </div>
+                <div *ngIf="telefono.errors.minlength">
+                    El telefono debe tener minimo 8 digitos
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputDpto">Departamento</label>
+            <select [(ngModel)]="usuarioModel.departamento" name="departamento" formControlName="departamento"
+                id="inputDpto" class="form-control">
+                <option selected>Seleccione un Departamento</option>
+                <option>Montevideo</option>
+                <option>Artigas</option>
+                <option>Salto</option>
+                <option>Paysandu</option>
+                <option>Rio Negro</option>
+                <option>Tacuarembo</option>
+                <option>Rivera</option>
+                <option>Cerro Largo</option>
+                <option>Durazno</option>
+                <option>Soriano</option>
+                <option>Flores</option>
+                <option>Florida</option>
+                <option>Lavalleja</option>
+                <option>Treinta y Tres</option>
+                <option>Rocha</option>
+                <option>Maldonado</option>
+                <option>Canelones</option>
+                <option>Colonia</option>
+                <option>San Jose</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCiudad">Localidad</label>
+            <input [(ngModel)]="usuarioModel.localidad" name="localidad" formControlName="localidad" type="text"
+                class="form-control" id="inputCiudad">
+            <div *ngIf="localidad.invalid && (localidad.dirty || localidad.touched)" class="alert alert-danger">
+                <div *ngIf="localidad.errors.required">
+                    Debe ingresar una localidad
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 center">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputBarrio">Barrio</label>
+                    <input [(ngModel)]="usuarioModel.barrio" name="barrio" formControlName="barrio" type="text"
+                        class="form-control" id="inputBarrio">
+                    <div *ngIf="barrio.invalid && (barrio.dirty || barrio.touched)" class="alert alert-danger">
+                        <div *ngIf="barrio.errors.required">
+                            Debe ingresar un barrio
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCodigoPostal">Código Postal</label>
+                    <input [(ngModel)]="usuarioModel.codigoPostal" name="codigoPostal" formControlName="codigoPostal"
+                        type="" class="form-control" id="inputCodigoPostal">
+                    <div *ngIf="codigoPostal.invalid && (codigoPostal.dirty || codigoPostal.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="codigoPostal.errors.required">
+                            Debe ingresar un codigo Postal
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 center">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="inputCalle">Calle</label>
+                    <input [(ngModel)]="usuarioModel.calle" name="calle" formControlName="calle" type="text"
+                        class="form-control" id="inputCalle" placeholder="Por ejemplo: 18 de Julio">
+                    <div *ngIf="calle.invalid && (calle.dirty || calle.touched)" class="alert alert-danger">
+                        <div *ngIf="calle.errors.required">
+                            Debe ingresar una calle
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputNumero">Número</label>
+                    <input [(ngModel)]="usuarioModel.numero" name="numero" formControlName="numero" type=""
+                        class="form-control" id="inputNúmero" placeholder="001">
+                    <div *ngIf="numero.invalid && (numero.dirty || numero.touched)" class="alert alert-danger">
+                        <div *ngIf="numero.errors.required">
+                            Debe ingresar un numero
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEsq">Esquina</label>
+            <input [(ngModel)]="usuarioModel.esquina" name="esquina" formControlName="esquina" type="text"
+                class="form-control" id="inputEsq" placeholder="Por ejemplo: Cufré">
+            <div *ngIf="esquina.invalid && (esquina.dirty || esquina.touched)" class="alert alert-danger">
+                <div *ngIf="esquina.errors.required">
+                    Debe ingresar una esquina
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputExtra">Extra</label>
+            <input [(ngModel)]="usuarioModel.extra" name="extra" formControlName="extra" type="text"
+                class="form-control" id="inputExtra">
+        </div>
+        <div class="col-md-6 center">
+            <div class="row">
+                <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Confirmar</button>
+                <button href="/" type="button" class="btn btn-danger">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</ion-content>

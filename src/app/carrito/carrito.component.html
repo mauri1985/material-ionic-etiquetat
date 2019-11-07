@@ -1,0 +1,74 @@
+<app-header></app-header>
+<h2>Carrito de compras</h2>
+<div class="container-tabla">
+
+  <table class="table" id="tablaCarrito">
+    <thead>
+      <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Soporte</th>
+        <th scope="col">Tamaño</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio(U$S)</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let objeto of objetosArray">
+      <tr>
+        <td><img src="{{objeto.foto_previsualizacion}}" style="height: 130px;width:130px;"></td>
+        <td>{{objeto.tipo_Papel}}</td>
+        <td>{{objeto.tamanio_Etiqueta}}</td>
+        <td>{{objeto.cantidad}}</td>
+        <td>{{objeto.monto}}</td>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ¿Desea eliminar el producto del carrito?
+              </div>
+              <div class="modal-footer">
+                <button (click)=quitarPedidoCarrito(objeto) class="btn btn-success" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <td><button type="button" data-toggle="modal" data-target="#exampleModal">
+            <img src=".\assets\img\cancelar.png" width="30" height="30" alt="">
+          </button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+<h4 *ngIf="showAlertItem">El carrito esta vacio</h4>
+
+<div class="right">
+  <div>
+    <label id="campototal">Total U$S{{total}}</label>
+  </div>
+  <div id="paypal-checkout-btn"></div>
+
+  <div id="form">
+    <div ngbDropdown class="d-inline-block">
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+  </div>
+</div>
+<div *ngIf="showAlert" class="alert alert-success" role="alert">
+  El Pago ha sido realizado con exito!!
+</div>

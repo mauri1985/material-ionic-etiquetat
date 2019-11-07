@@ -1,0 +1,46 @@
+<form (ngSubmit)="cambiarContrasenia()" [formGroup]="cambiarContraForm">
+        <div class="form-group col-md-6">
+                <label >Contraseña actual</label>
+                <input [(ngModel)]="usuarioModel.contrasenia" formControlName="contrasenia" name="contrasenia" type="password" class="form-control">
+                <span *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)" class="help-block">
+                  <span class="help-block" *ngIf="contrasenia.errors.required">
+                    Debe ingresar una contraseña
+                  </span>
+                </span>  
+              </div>
+              <div class="form-group col-md-6">
+                <label >Contraseña nueva</label>
+                <input [(ngModel)]="usuarioModel.nuevaContrasenia" formControlName="contrasenianueva" name="contrasenianueva" type="password" class="form-control">
+                <span class="help-block" *ngIf="contrasenianueva.invalid && (contrasenianueva.dirty || contrasenianueva.touched)">
+                  <span class="help-block" *ngIf="contrasenianueva.errors.required">
+                    Debe ingresar una contraseña
+                  </span>
+                </span>  
+              </div>
+
+              <div class="form-group col-md-6">
+                    <label >Confirmacion</label>
+                    <input appConfirmEqualValidator="contrasenianueva" formControlName="contrasenianueva2" name="contrasenianueva2" type="password" class="form-control">
+                    <span class="help-block" *ngIf="contrasenianueva2.invalid && (contrasenianueva2.dirty || contrasenianueva2.touched)">
+                      <span class="help-block" *ngIf="contrasenianueva2.errors.required">
+                          Debe ingresar una contraseña
+                      </span>
+                    </span>  
+                  <span class="help-block" *ngIf="contrasenianueva2.invalid && (contrasenianueva2.dirty || contrasenianueva2.touched)">
+                    <span class="help-block" *ngIf="contrasenianueva2.errors.notEqual">
+                        Las contraseñas no coinciden
+                    </span>
+                  </span>  
+                  </div>
+                  <div>
+                    <button type="submit" class="btn btn-success">Confirmar</button>
+                    <button routerLink='/home' type="button" class="btn btn-danger">Cancelar</button>
+                    </div>
+                    <div *ngIf="showAlertTrue" class="alert alert-success" role="alert">
+                      Contraseña modificada exitosamente!!
+                    </div>
+                    <div *ngIf="showAlertFalse" class="alert alert-danger" role="alert">
+                      La Contraseña no pudo ser modificada, intente nuevamente.
+                    </div> 
+                   
+</form>

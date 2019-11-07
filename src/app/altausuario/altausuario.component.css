@@ -1,0 +1,18 @@
+form {
+
+    margin: 0 auto;
+   text-align: center;
+
+}
+
+
+div{
+    margin: 0 inherit;
+    text-align: center;
+}
+
+span {
+    color: red;
+    font-style: italic;
+   }
+

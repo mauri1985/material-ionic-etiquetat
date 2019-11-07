@@ -1,0 +1,285 @@
+<!----------HEADER ADMINISTRADOR-------->
+<nav *ngIf="resp.rol =='ADMINISTRADOR'" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">
+    <img src=".\assets\img\FEKEUY.png" width="150" height="50" alt="">
+  </a>
+
+  <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Usuario
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="altaAdmin">Crear Usuario</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Modificar Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Eliminar Usuario</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Parámetro
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Modificar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Quitar</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Categoria
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="altaCategoria">Alta</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Modificar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Quitar</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Imagen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Alta</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Quitar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Plantilla
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Alta</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Quitar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Pedidos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Asignar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Ruta de Distribucion</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Actualizar Estado</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+    </ul>
+    <a class="navbar-brand" href="carrito">
+      <img src=".\assets\img\notificaciones.png" width="30" height="30" alt="">
+    </a>
+    
+      <div class="nav-item dropdown">
+        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false"><img src=".\assets\img\user.png" width="30" height="30" alt=""></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Editar Perfil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="cambioContrasenia">Cambiar Contraseña</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" (click)="cerrarSesion()">Cerrar Sesión</a>
+          
+        </div>
+      </div>
+    
+  </div>
+</nav>
+<!----------HEADER SUPERVISOR -------->
+<nav *ngIf="resp.rol =='SUPERVISOR'" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">
+    <img src=".\assets\img\FEKEUY.png" width="150" height="50" alt="">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+     
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Imagen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Busqueda</a>
+          
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+         Plantilla
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Pedidos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Asignar</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Ruta de Distribucion</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Actualizar Estado</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+    </ul>
+    <a class="navbar-brand" href="carrito">
+      <img src=".\assets\img\notificaciones.png" width="30" height="30" alt="">
+    </a>
+    
+    <div class="nav-item dropdown">
+      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false"><img src=".\assets\img\user.png" width="30" height="30" alt=""></a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="">Editar Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="cambioContrasenia">Cambiar Contraseña</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" (click)="cerrarSesion()">Cerrar Sesión</a>
+        
+      </div>
+    </div>
+    
+  </div>
+</nav>
+<!----------HEADER OPERADOR  -------->
+<nav *ngIf="resp.rol == 'OPERADOR'" class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/home">
+    <img src=".\assets\img\FEKEUY.png" width="150" height="50" alt="">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+     
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Imagen
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Busqueda</a>
+          
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+         Plantilla
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Pedidos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">Mis Pedidos</a>
+          <div class="dropdown-divider"></div>
+          
+          <a class="dropdown-item" href="#">Busqueda</a>
+        </div>
+      </li>
+    </ul>
+    
+    
+    <div class="nav-item dropdown">
+      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false"><img src=".\assets\img\user.png" width="30" height="30" alt=""></a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="">Editar Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="cambioContrasenia">Cambiar Contraseña</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" (click)="cerrarSesion()">Cerrar Sesión</a>
+        
+      </div>
+    </div>
+    
+  </div>
+</nav>
+<!----------HEADER CLIENTE-- ------>
+<div class="col-lg-12">
+<nav *ngIf="resp.rol =='CLIENTE'" class="navbar navbar-expand-lg navbar-light bg-light" >
+  <a class="navbar-brand" href="/home">
+    <img src=".\assets\img\FEKEUY.png" width="150" height="50" alt="">
+  </a>
+
+  <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto"></ul>
+    <div class="nav-item dropdown">
+      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false"><img src=".\assets\img\user.png" width="30" height="30" alt=""></a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="">Editar Perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="cambioContrasenia">Cambiar Contraseña</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Mis Compras</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Cancelar Registro</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" (click)="cerrarSesion()">Cerrar Sesión</a>
+        
+      </div>
+    </div>
+    
+    <a class="navbar-brand" href="carrito">
+      <img src=".\assets\img\carrito.png" width="30" height="30" alt="">
+    </a>
+    
+   
+  </div>
+</nav>
+</div>

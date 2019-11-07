@@ -1,0 +1,70 @@
+<div class="col"  style="  text-align: left;">
+  <div>
+  <mat-form-field>
+      <mat-label>Seleccione Categoria</mat-label>
+
+      <mat-select [(value)]="Categoriaselected" required (selectionChange)="refrescarImagenes()">
+        <mat-option *ngFor="let categoria of listacategoria" [value]="categoria.id">
+          {{categoria.nombre}}
+        </mat-option>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+      <mat-form-field>
+          <mat-label>Seleccione Tipo de Imagen</mat-label>
+
+          <mat-select [(value)]="tiposelecion" required (selectionChange)="refrescarImagenes()">
+            <mat-option  value="Imagen">Imagen</mat-option>
+            <mat-option  value="Lienzo">Lienzo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    <div>
+
+      <mat-slide-toggle [(ngModel)]="checkedLienzo" [checked]="checkedLienzo" (change)="cambioswitchImagen()">
+        Habilitadas
+      </mat-slide-toggle>
+    </div>
+    <div style="  text-align: left;" class="form-group">
+      <p></p>
+      <p>Subir imagen</p>
+      <div>
+        <label type="button" id=" ">
+          Seleccionar <input type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+          <span class="fa fa-folder-open-o" aria-hidden="true"></span>
+        </label>
+        <p>Imágenes a subir: {{ uploader?.queue?.length }}</p>
+      </div>
+      <div>
+          <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+          [disabled]="!uploader.getNotUploadedItems().length">
+          <span class="fa fa-upload"></span> Cargar Todo
+        </button>
+      </div>
+
+
+
+    </div>
+    <div class="row">
+
+        <div class="col" *ngFor="let ImgObj of listaimagenesObjetos">
+          <img  src="{{ImgObj.enlace}}" alt="..."
+            style="height: 100px;width:100px;">
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

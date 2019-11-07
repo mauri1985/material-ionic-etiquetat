@@ -1,0 +1,481 @@
+<li *ngIf="mensaje">
+  <i>{{mensaje}}</i>
+</li>
+
+<div *ngIf="alertaCarritoOK" class="alert alert-success" role="alert">
+  La etiqueta ha sido agregada al carrito!
+</div>
+
+<div id="contentToConvert" class="example-boundary" [ngStyle]="{'background-image': 'url(' + fondo + ')'}">
+
+  <div *ngFor="let list of lista;let indice=index">
+    <div *ngIf="list.imagen" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag
+      (cdkDragMoved)=drop($event) (cdkDragEnded)=drop2($event,indice)
+      [cdkDragConstrainPosition]="constrainPosition" [cdkDragFreeDragPosition]="dragPosition"
+      (cdkDragStarted)=drop3($event,indice) (click)=selecionar(indice) [style.width.px]="list.w"
+      [style.height.px]="list.h"
+      [style.transform]="'translate3d('+list.x +'px,' + list.y + 'px,' + list.y + 'px)'">
+
+      <img id={{list.id}} src="{{list.imagen}}" alt="imagen" [style.width.px]="list.w" [style.height.px]="list.h"
+        [ngStyle]="{'opacity': ''+ list.opacidad + '','transform': 'rotate('+ list.r + 'deg) scale(' + list.s +')'}"
+        style="background-image: none;">
+
+    </div>
+
+    <div *ngIf="list.texto" id="er" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag
+      (cdkDragMoved)=drop($event) (cdkDragEnded)=drop2($event,indice)
+      [cdkDragConstrainPosition]="constrainPosition" [cdkDragFreeDragPosition]="dragPosition"
+      (cdkDragStarted)=drop3($event,indice) (click)=selecionar(indice)
+      [style.transform]="'translate3d('+list.x +'px,' + list.y + 'px,' + list.y + 'px)'">
+      <input [(ngModel)]="list.texto" name="name" type="text" value={{list.texto}} [style.width.px]="list.w"
+        [style.height.px]="list.h"
+        [ngStyle]="{'opacity': ''+ list.opacidad + '','color': '' + list.color + '','font-size': '25' ,'font-family': '' + list.fuente + '','transform': 'rotate('+ list.r + 'deg) scale(' + list.s +') '} "
+        style="background-color:transparent; border: 0;
+background: none;
+box-shadow: none;
+border-radius: 0px;
+">
+
+    </div>
+
+  </div>
+
+</div>
+
+{{mytext}}
+<input type="hidden" id="texto">
+<div id="pepe2" class="w3-container">
+
+  <div class="row">
+    <div class="col-4" style="padding: 5px">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="refrescarPlantillas()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              Seleccione plantilla
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-panel-description>
+
+            <div style="  text-align: left;">
+              <mat-form-field>
+                <mat-label>Seleccione Categoria</mat-label>
+
+                <mat-select [(value)]="Categoriaselected" required (selectionChange)="refrescarPlantillas()">
+                  <mat-option *ngFor="let categoria of listacategoria" [value]="categoria.id">
+                    {{categoria.nombre}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <div class="row">
+
+                <mat-slide-toggle [(ngModel)]="checked" [checked]="checked" (change)="cambioswitch()"> Publicas
+                </mat-slide-toggle>
+              </div>
+              <div class="row">
+
+                <div class="col" *ngFor="let eti of listaetiqueta;let ind=index">
+                  <img (click)=ver(ind) src="{{eti.foto_previsualizacion}}" alt="..."
+                    style="height: 100px;width:100px;">
+                </div>
+              </div>
+            </div>
+          </mat-panel-description>
+
+
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="refrescarlienzos()" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              Cambiar Lienzo
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+
+            <div style="  text-align: left;">
+              <mat-form-field>
+                <mat-label>Seleccione Categoria</mat-label>
+
+                <mat-select [(value)]="Categoriaselected" required (selectionChange)="refrescarlienzos()">
+                  <mat-option *ngFor="let categoria of listacategoria" [value]="categoria.id">
+                    {{categoria.nombre}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <div class="row">
+
+                <mat-slide-toggle [(ngModel)]="checkedLienzo" [checked]="checkedLienzo" (change)="cambioswitchLinezo()">
+                  Publicas
+                </mat-slide-toggle>
+              </div>
+              <div style="  text-align: left;" class="form-group">
+                <p></p>
+                <p>Subir imagen</p>
+                <div>
+                  <label type="button" id="seleccionarImagen">
+                    Seleccionar <input type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+                    <span class="fa fa-folder-open-o" aria-hidden="true"></span>
+                  </label>
+
+                </div>
+
+
+
+              </div>
+              <div class="row">
+
+                <div class="col" *ngFor="let lie of listaimagenes;let indlie=index">
+                  <img (click)=CambiarFondo(indlie) src="{{lie.enlace}}" alt="..."
+                    style="max-width: 100px;max-height: 100px;">
+                </div>
+              </div>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="refrescarImagenes()" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              Agregar Imagen
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+
+            <div style="  text-align: left;">
+              <mat-form-field>
+                <mat-label>Seleccione Categoria</mat-label>
+
+                <mat-select [(value)]="Categoriaselected" required (selectionChange)="refrescarImagenes()">
+                  <mat-option *ngFor="let categoria of listacategoria" [value]="categoria.id">
+                    {{categoria.nombre}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <div>
+
+                <mat-slide-toggle [(ngModel)]="checkedLienzo" [checked]="checkedLienzo" (change)="cambioswitchImagen()">
+                  Publicas
+                </mat-slide-toggle>
+              </div>
+              <div style="  text-align: left;" class="form-group">
+                <p></p>
+                <p>Subir imagen</p>
+                <div>
+                  <label type="button" id=" ">
+                    Seleccionar <input type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+                    <span class="fa fa-folder-open-o" aria-hidden="true"></span>
+                  </label>
+
+                </div>
+
+
+
+              </div>
+              <div class="row">
+
+                <div class="col" *ngFor="let ImgObj of listaimagenesObjetos;let indObj=index">
+                  <img (click)=AgregarImagen(indObj) src="{{ImgObj.enlace}}" alt="..."
+                    style="height: 100px;width:100px;">
+                </div>
+              </div>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="refrescarImagenes()" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              Trabajar Textos
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            <div style="  text-align: left;">
+              <div class="color-picker">
+                <div class="summary-info" (click)="toggleColors()">
+                  <div class="info">
+                    <h5>Color: &nbsp; </h5>
+                    <p class="style">{{ heading }}</p>
+                    <p class="style-value">{{ color }}</p>
+                  </div>
+
+                  <div class="circle" [ngStyle]="{'background': color}"></div>
+                </div>
+
+                <div *ngIf="show" class="opened">
+                  <div class="colors">
+                    <div (click)="changeColor(paint)" *ngFor="let paint of defaultColors" class="circle"
+                      [ngStyle]="{'background': paint}"></div>
+                  </div>
+
+                  <div class="hex-code">
+                    <p>Hex Code</p>
+                    <div class="g-input">
+                      <input type="text" maxlength="7" [value]="color" (keyup)="changeColorManual(paintInput.value)"
+                        (keydown.enter)="toggleColors()" #paintInput />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-form-field>
+                <mat-label>Seleccione Fuente</mat-label>
+
+                <mat-select [(value)]="tipofuente" required>
+
+                  <mat-option value="serif">serif</mat-option>
+                  <mat-option value="sans-serif">sans-serif</mat-option>
+                  <mat-option value="monospace">monospace</mat-option>
+                  <mat-option value="cursive">cursive</mat-option>
+                  <mat-option value="fantasy">fantasy</mat-option>
+                  <mat-option value="Homer Simpson">Homer Simpson</mat-option>
+                  <mat-option value="Arial">Arial</mat-option>
+                  <mat-option value="Comic Sans">Comic Sans</mat-option>
+                  <mat-option value="icon">icon</mat-option>
+                  <mat-option value="Palo seco">Palo seco</mat-option>
+                  <mat-option value="Verdana">Verdana</mat-option>
+                  <mat-option value="Modern">Modern</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <mat-form-field>
+                  <input [(ngModel)]="ancho" matInput placeholder="ancho">
+                </mat-form-field>
+                <mat-form-field>
+                  <input [(ngModel)]="largo" matInput placeholder="alto">
+                </mat-form-field>
+
+
+
+              </div>
+              <div style="  text-align: right;">
+                <button (click)="Modificafuente()" type="button" class="btn btn-default btn-circle"><i
+                    class="fa fa-check"></i>
+                </button>
+                <button (click)="AgregarFuente()" type="button" class="btn btn-default btn-circle"><i
+                    class="fa fa-plus-circle"></i>
+                </button>
+
+              </div>
+            </div>
+
+          </mat-panel-description>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="refrescarPlantillas()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+              Guardar Plantilla
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-panel-description>
+
+            <div style="  text-align: left;">
+
+
+
+              <!--
+                <mat-form-field>
+                  <input [(ngModel)]="NombrePlantilla" matInput placeholder="Nombre Plantilla">
+                </mat-form-field>-->
+
+   <div>
+                    <mat-form-field>
+                        <mat-label>Seleccione Soporte</mat-label>
+
+                        <mat-select  [(value)]="selecionadosoporte">
+                          <mat-option *ngFor="let tetiqueta of listatamanioEtiqueta" [value]="tetiqueta">
+                            {{tetiqueta.clave}}
+                          </mat-option>
+
+                        </mat-select>
+                      </mat-form-field>
+
+
+
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Seleccione Tipo de papel</mat-label>
+
+                        <mat-select [(value)]="tipopapelseleccionado">
+                          <mat-option *ngFor="let tipopapel of listaTipoPapel" [value]="tipopapel">
+                            {{tipopapel.clave}}
+                          </mat-option>
+
+                        </mat-select>
+                      </mat-form-field>
+
+
+
+                </div>
+
+             
+              <div>
+                <mat-form-field>
+                  <mat-label>Seleccione Cantidad</mat-label>
+
+                  <mat-select [(value)]="cantidadselecionada">
+                    <mat-option *ngFor="let cantidadsel of listaCantidad" [value]="cantidadsel">
+                      {{cantidadsel.clave}}
+                    </mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+
+
+
+             
+
+              <div><h2> U$S {{total}}</h2> </div>
+              <div>
+                <button (click)="CalcularPrecio()" mat-raised-button color="primary"><i class="fa fa-calculator"></i></button>
+                <button (click)="guardar()" mat-raised-button color="primary"><i class="fa fa-save"></i></button>
+                <button *ngIf="show" (click)="agregarCarrito()" mat-raised-button color="primary"><i class="fa fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+         
+             
+
+
+           
+          </mat-panel-description>
+
+
+        </mat-expansion-panel>
+
+
+
+
+      </mat-accordion>
+
+      <!--  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+                <div class="row">
+                    <div class="col">
+                      <img src="assets/imagenes/8.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="col">
+                        <img src="assets/imagenes/8.jpg" class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+          </div>
+
+
+        <div *ngFor="let food of listacategoria;let ind=index" class="carousel-item">
+            <div class="row">
+                <div class="col" *ngFor="let food of listacategoria;let ind2=index" >
+                    <img *ngIf="ind < 2" (click)=ver(ind2) src="assets/imagenes/55.gif" class="d-block w-100" alt="...">
+                </div>
+
+        </div>
+
+      </div>
+
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+-->
+
+
+    </div>
+
+    <div id="pepe" class="col-8" style="padding: 5px">
+
+
+
+
+
+      <div class="row" style="  text-align: left ;  padding: 0px">
+
+
+        <div class="col">
+
+
+
+          S <i class="fa fa-minus-square"></i>
+          <mat-slider style="  padding: 0px;margin: 0px" class="example-margin" (change)=achicar() max="3" min="0"
+            step="0.01" thumbLabel="true" tickInterval="0.01" [(ngModel)]="value">
+          </mat-slider><i class="fa fa-plus-square"></i>
+
+        </div>
+        <div class="col">
+
+
+
+          O <i class="fa fa-minus-square"></i>
+          <mat-slider style="  padding: 0px;margin: 0px" class="example-margin" (change)=opacidad() max="1" min="0"
+            step="0.01" thumbLabel="true" tickInterval="0.01" [(ngModel)]="OpacidadValor">
+          </mat-slider><i class="fa fa-plus-square"></i>
+
+        </div>
+      </div>
+      <div class="row" style="  text-align: left">
+
+
+        <div class="col">
+
+
+
+          W <i class="fa fa-minus-square"></i>
+          <mat-slider style="  padding: 0px;margin: 0px" class="example-margin" (change)=witch() max="400" min="10"
+            step="1" thumbLabel="true" tickInterval="0.01" [(ngModel)]="w">
+          </mat-slider><i class="fa fa-plus-square"></i>
+
+        </div>
+        <div class="col">
+
+
+
+          H <i class="fa fa-minus-square"></i>
+          <mat-slider style="  padding: 0px;margin: 0px" class="example-margin" (change)=hige() max="400" min="10"
+            step="1" thumbLabel="true" tickInterval="0.01" [(ngModel)]="h">
+          </mat-slider><i class="fa fa-plus-square"></i>
+
+        </div>
+
+      </div>
+
+
+      <button (click)="eliminar()" mat-raised-button color="primary"><i class="fa fa-trash"></i></button>
+      <button (click)="Rderecha()" mat-raised-button color="primary"><i class="fa fa-rotate-left"></i></button>
+      <button (click)="Rizquierda()" mat-raised-button color="primary"><i class="fa fa-repeat"
+          aria-hidden="true"></i></button>
+      <button (click)="captureScreen()" mat-raised-button color="primary"><i class="fa fa-file-pdf-o"></i></button>
+
+
+
+      
+
+    </div>
+    
+          </div>
+
+    
+         
